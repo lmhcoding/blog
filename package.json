@@ -1,0 +1,18 @@
+{
+  "name": "blog",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "keywords": [],
+  "author": "lmhcoding <13265878974@163.com> (https://github.com/lmhcoding)",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.1",
+    "vuepress": "^1.2.0"
+  }
+}
