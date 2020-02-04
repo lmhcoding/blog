@@ -7454,6 +7454,11 @@ vuepress-plugin-smooth-scroll@^0.0.3:
   dependencies:
     smoothscroll-polyfill "^0.4.3"
 
+vuepress-plugin-table-of-contents@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.npm.taobao.org/vuepress-plugin-table-of-contents/download/vuepress-plugin-table-of-contents-1.1.5.tgz#6c3540c24a84e0eeaf67cbe734c118f0194454d6"
+  integrity sha1-bDVAwkqE4O6vZ8vnNMEY8BlEVNY=
+
 vuepress@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/vuepress/download/vuepress-1.2.0.tgz#2f2cdf337ad40a3e4866dfd33e97b840db386af7"
