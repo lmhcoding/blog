@@ -1,4 +1,5 @@
 module.exports = {
+    base: '/blog/',
     title: 'lmh的前端记录',
     description: 'lmh的前端学习笔记',
     head: [
