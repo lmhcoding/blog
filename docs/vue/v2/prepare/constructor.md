@@ -1,4 +1,4 @@
-# vue构造函数
+# Vue构造函数
 ## 寻找Vue构造函数
 上一节提到``web-full-esm``的入口为:
 ``src/platforms/web/entry-runtime-with-compiler.js``。

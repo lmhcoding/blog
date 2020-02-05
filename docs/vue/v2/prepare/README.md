@@ -2,7 +2,7 @@
 ::: tip
 本系列文章为我阅读Vue源码时的笔记，Vue版本为2.6.10
 :::
-本章将从一下几个方面开始vue源码探索。
+本章将从以下几个方面开始vue源码探索。
 - [源码目录](/blog/vue/v2/prepare/directory)
 - [源码构建](/blog/vue/v2/prepare/build)
 - [Vue构造函数](/blog/vue/v2/prepare/constructor)
