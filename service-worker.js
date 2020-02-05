@@ -27,7 +27,7 @@ self.addEventListener('message', (event) => {
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "1887c393d2f46e816523f01ceb187e0e"
+    "revision": "823947e8d5a7de152aa72534efa2c173"
   },
   {
     "url": "assets/css/0.styles.48263c0b.css",
@@ -78,8 +78,8 @@ self.__precacheManifest = [
     "revision": "44b0c2bb19e5a6e9f6749efb09ec671a"
   },
   {
-    "url": "assets/js/app.b4213763.js",
-    "revision": "29b71a302c818dafc6598ecafe5e6c6d"
+    "url": "assets/js/app.1f693d34.js",
+    "revision": "984d015da3617e27395b114fe382b86e"
   },
   {
     "url": "icons/android-chrome-192x192.png",
@@ -135,7 +135,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "8f530c0c7a493fb6633f7ddb232ad400"
+    "revision": "8c87dd5b97d0c203b0eacdd8bf8f809c"
   },
   {
     "url": "learning.jpeg",
@@ -147,19 +147,19 @@ self.__precacheManifest = [
   },
   {
     "url": "vue/v2/prepare/build.html",
-    "revision": "2a807e5ad48104c671f8845c4f4b8cb4"
+    "revision": "17fa2e4456c156847fd5a9b5772698f3"
   },
   {
     "url": "vue/v2/prepare/constructor.html",
-    "revision": "9233172a1b3a9bed1dfa877015166857"
+    "revision": "adef8aaf76af9bdab0b8f529caf82338"
   },
   {
     "url": "vue/v2/prepare/directory.html",
-    "revision": "6b49a43dff8f158cc13314d6875d7067"
+    "revision": "3a45f35d69519356f3ddd487c666ba85"
   },
   {
     "url": "vue/v2/prepare/index.html",
-    "revision": "40d4ec6a12cfafa7a7f360fa08fb3ca4"
+    "revision": "9cf8981d750921c08bc4c79202c70e2a"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
