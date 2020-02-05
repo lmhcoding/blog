@@ -1,7 +1,7 @@
 # Vue 源码构建
 
 ``package.json``中有这么一段代码：
-```json
+```json {3}
 {
     "scripts": {
         "build": "node scripts/build.js",
@@ -13,7 +13,7 @@
 
 当运行``npm run build`` 或者 ``yarn build``命令时，实际上执行的是``node scripts/build.js``命令，最终运行的是build.js文件里的build函数。
 
-```javascript
+```javascript {1,3}
 let builds = require('./config').getAllBuilds()
 if (process.argv[2]) {
   const filters = process.argv[2].split(',')
@@ -101,7 +101,7 @@ const builds = {
 
 以上是不同用途的vue的构建配置，各个配置项的用途自行查看[rollup](https://rollupjs.org/guide/en/),下面以web-full-esm为例，它的入口为``entry: resolve('web/entry-runtime-with-compiler.js'),``,resolve的定义为：
 
-```javascript
+```javascript {1,3}
 const aliases = require('./alias')
 const resolve = p => {
   const base = p.split('/')[0]
@@ -116,7 +116,7 @@ const resolve = p => {
 resolve函数将传入的路径从字符``/``处切开，取第一个作为base，(在这个例子中，base为web)然后使用base获取别名配置中base对应的路径，
 并与传入路径除去base的剩余部分合成最终路径。别名配置在``scripts/alias``文件中。
 
-```javascript
+```javascript {7}
 const resolve = p => path.resolve(__dirname, '../', p)
 module.exports = {
   vue: resolve('src/platforms/web/entry-runtime-with-compiler'),
