@@ -130,6 +130,6 @@ module.exports = {
 }
 ```
 
-可见， web对应的路径为path.resolve(__dirname, '../', 'src/platforms/web'),所以最终的入口为，``src/platforms/web/entry-runtime-with-compiler.js``,rollup打包后会在dist目录下生产vue.esm.js。
+可见， web对应的路径为path.resolve(__dirname, '../', 'src/platforms/web'),所以最终的入口为，``src/platforms/web/entry-runtime-with-compiler.js``,rollup打包后会在dist目录下生成vue.esm.js。
 
 

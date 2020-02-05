@@ -1,4 +1,21 @@
 # Vue项目目录设计
+```
+.
+├── BACKERS.md
+├── LICENSE
+├── README.md
+├── benchmarks
+├── dist # 打包文件存放目录
+├── examples # 示例文件
+├── flow # flow类型声明文件
+├── package.json
+├── packages
+├── scripts # 构建脚本
+├── src # 源码目录
+├── test # 测试脚本
+├── types # ts声明文件
+```
+源码存放在src目录下
 
 ```
 src
