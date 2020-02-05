@@ -22,18 +22,18 @@ module.exports = {
         lastUpdated: '上次更新',
         nav: [
             {text: '首页', link: '/'},
-            {text: 'Vue2.x', link: '/vue/v2/prepare/'}
+            {text: 'Vue2.x', link: '/vue_v2/'}
         ],
         sidebar: {
-            '/vue/v2/': [
+            '/vue_v2/': [
                 {
-                    title: '准备工作',
+                    title: 'Vue2.x源码阅读',
                     collapsable: false,
                     children: [
-                        ['prepare/', '介绍'],
-                        'prepare/directory',
-                        'prepare/build',
-                        'prepare/constructor'
+                        ['', '前言'],
+                        'directory',
+                        'build',
+                        'constructor'
                     ]
                 }
             ]
