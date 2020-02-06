@@ -27,7 +27,7 @@ self.addEventListener('message', (event) => {
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "d8adc91f6d16017ca80f7c8277304d1c"
+    "revision": "e07e5b5f2d96ba72a46fc62189f64d10"
   },
   {
     "url": "assets/css/0.styles.48263c0b.css",
@@ -62,24 +62,24 @@ self.__precacheManifest = [
     "revision": "42a1658734baeb5388bac41bf22144e7"
   },
   {
-    "url": "assets/js/6.6e6df333.js",
-    "revision": "6979342a761ee3d51feea8017cb4759b"
+    "url": "assets/js/6.2fb4c635.js",
+    "revision": "5e07e93933b60e71952272af2dc88b25"
   },
   {
-    "url": "assets/js/7.bd463a33.js",
-    "revision": "04b29fa7f9bad1108d9caf09c232799b"
+    "url": "assets/js/7.1cea22b0.js",
+    "revision": "bc2501dd324fc58b4b94e57a50b2ac37"
   },
   {
-    "url": "assets/js/8.2798e0ad.js",
-    "revision": "e20fc47311ce17f99f2744006ac8e1eb"
+    "url": "assets/js/8.f9a1fc55.js",
+    "revision": "b24db1e61f67c12842753b156caf67d4"
   },
   {
-    "url": "assets/js/9.e03a4e61.js",
-    "revision": "67fe288b90d11a8fa2edf80f780b005c"
+    "url": "assets/js/9.e3c9376e.js",
+    "revision": "f253747aadb75e419a55bf12b7f128d5"
   },
   {
-    "url": "assets/js/app.c22f7c2b.js",
-    "revision": "7ca6e0be48a6cf1fd83f51634748b3ff"
+    "url": "assets/js/app.127978c6.js",
+    "revision": "b5e1077b86ddd826d4f27185b35bd3a9"
   },
   {
     "url": "icons/android-chrome-192x192.png",
@@ -135,7 +135,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "5d37df258d5977a2a610c2e8d5b302b6"
+    "revision": "b059707c896159d83f524ff219efe1fe"
   },
   {
     "url": "learning.jpeg",
@@ -147,19 +147,19 @@ self.__precacheManifest = [
   },
   {
     "url": "vue_v2/build.html",
-    "revision": "ce1ddd3444f5a26d7f4dfe1ad51e7a77"
+    "revision": "7643c56012d7d297707a9758d1d9f538"
   },
   {
     "url": "vue_v2/constructor.html",
-    "revision": "2922a6a30c9048d89bed4f6aacc3c0b7"
+    "revision": "e33a6c3c698acdd3242d546134edac7b"
   },
   {
     "url": "vue_v2/directory.html",
-    "revision": "c96488cf55280d999f8a077be718304f"
+    "revision": "e5b178227040571ca028131bfab8d41c"
   },
   {
     "url": "vue_v2/index.html",
-    "revision": "961b83c57990aefe11d647df7ed7deb7"
+    "revision": "32952eb42ef16596263a0f2748f6d387"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
