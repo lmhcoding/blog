@@ -1,6 +1,6 @@
 module.exports = {
     base: '/blog/',
-    title: 'lmh的前端记录',
+    title: '原点',
     description: 'lmh的前端学习笔记',
     head: [
         ['link', { rel: 'icon', href: '/pen.png' } ],  
