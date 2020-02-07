@@ -1,6 +1,6 @@
 module.exports = {
     base: '/blog/',
-    title: '原点',
+    title: '雨碎江南',
     description: 'lmh的前端学习笔记',
     head: [
         ['link', { rel: 'icon', href: '/pen.png' } ],  
@@ -33,7 +33,8 @@ module.exports = {
                         ['', '前言'],
                         'directory',
                         'build',
-                        'constructor'
+                        'constructor',
+                        'new_vue'
                     ]
                 }
             ]
