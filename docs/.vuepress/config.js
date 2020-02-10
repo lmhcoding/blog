@@ -34,7 +34,8 @@ module.exports = {
                         'directory',
                         'build',
                         'constructor',
-                        'new_vue'
+                        'new_vue',
+                        'mergeOptions',
                     ]
                 }
             ]
@@ -47,5 +48,8 @@ module.exports = {
             serviceWorker: true,
             updatePopup: true
         }]
-    ]
+    ],
+    markdown: {
+        lineNumbers: true
+    }
 }
