@@ -319,11 +319,13 @@ child = {
  * Watchers hashes should not overwrite one
  * another, so we merge them as arrays.
  * 
- * 侦听器最终会合并成数组的形式
+ * 侦听器最终会合并结果有三种情况：
+ * 1. 只有parentVal
  * {
- *   key: [watcher1, watcher2] // parentVal和childVal存在相同的key
- *   key: watcher // 只有一个存在
+ *    __proto__: parentVal
  * }
+ * 2. 只有childVal，结果为childVal 
+ * 3. 都存在，则为一个对象，包含parentVal和childVal的所有属性，包括原型链上定义的watch
  */
 strats.watch = function (
   parentVal: ?Object,
@@ -332,6 +334,8 @@ strats.watch = function (
   key: string
 ): ?Object {
   // work around Firefox's Object.prototype.watch...
+  // firefox下，不定义watch仍然可以在原型上找到watch
+  // 因此一旦等于 nativeWatch就重置为undefined
   if (parentVal === nativeWatch) parentVal = undefined
   if (childVal === nativeWatch) childVal = undefined
   /* istanbul ignore if */
@@ -367,13 +371,57 @@ watcher的合并过程为：
       4. 如果存在parent，确保parent是数组
       5. parent存在，将child合并到parent中，否则，返回child数组。
 
-举例如下：
+合并结果有三种情况：
+
+1. 只有parentVal，结果为Object.create(parentVal || null)
+
+```javascript
+const child = Vue.extend({
+  watch: {
+    a (v) {
+      console.log(v)
+    }
+  }
+})
+new Child ({})
+//  合并结果为:
+{
+  __proto__: {
+    a (v) {
+      console.log(v)
+    }
+  }
+}
+```
+
+2. 只有childVal， 合并结果为childVal
+
+```javascript
+Vue.extend({
+  watch: {
+    a (v) {
+      console.log(v)
+    }
+  }
+})
+// 合并结果为：
+Vue.options.watch = {
+  a (v) {
+    console.log(v)
+  }
+}
+```
+
+3. parentVal和childVal都存在
 
 ```javascript
 const Child = Vue.extend({
   watch: {
     a (v) {
       console.log(`hello ${v}`})
+    }，
+    b (v) {
+      console.log(v)
     }
   }
 })
@@ -414,6 +462,9 @@ Child.options.watch = {
 {
   a (v) {
     console.log(`hello ${v}`)
+  },
+  b (v) {
+    console.log(v)
   }
 }
 // childVal
@@ -428,13 +479,16 @@ Child.options.watch = {
 ```javascript
 vm.$options.watch = {
   a: [
-    a (v) {
+    function (v) {
       console.log(`hello ${v}`)
     },
-    a (newVal) {
+    function (newVal) {
       console.log(newVal)
     }
-  ]
+  ],
+  b (v) {
+    console.log(v)
+  }
 }
 ```
 
