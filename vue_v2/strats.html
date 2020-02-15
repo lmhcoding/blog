@@ -15,7 +15,7 @@
   <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
   <meta name="msapplication-TileColor" content="#000000">
     
-    <link rel="preload" href="/blog/assets/css/0.styles.48263c0b.css" as="style"><link rel="preload" href="/blog/assets/js/app.6dd13233.js" as="script"><link rel="preload" href="/blog/assets/js/2.c5bb9098.js" as="script"><link rel="preload" href="/blog/assets/js/13.cf15b51c.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.bd5f5607.js"><link rel="prefetch" href="/blog/assets/js/11.396bbf02.js"><link rel="prefetch" href="/blog/assets/js/12.75269b8a.js"><link rel="prefetch" href="/blog/assets/js/14.d78bfe9c.js"><link rel="prefetch" href="/blog/assets/js/3.198e4c55.js"><link rel="prefetch" href="/blog/assets/js/4.46a478a8.js"><link rel="prefetch" href="/blog/assets/js/5.822361f8.js"><link rel="prefetch" href="/blog/assets/js/6.3c9c8e22.js"><link rel="prefetch" href="/blog/assets/js/7.21cd4e7b.js"><link rel="prefetch" href="/blog/assets/js/8.c1ba0fe9.js"><link rel="prefetch" href="/blog/assets/js/9.91a99494.js">
+    <link rel="preload" href="/blog/assets/css/0.styles.48263c0b.css" as="style"><link rel="preload" href="/blog/assets/js/app.e2a594f6.js" as="script"><link rel="preload" href="/blog/assets/js/2.c5bb9098.js" as="script"><link rel="preload" href="/blog/assets/js/13.495f7b28.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.bd5f5607.js"><link rel="prefetch" href="/blog/assets/js/11.396bbf02.js"><link rel="prefetch" href="/blog/assets/js/12.75269b8a.js"><link rel="prefetch" href="/blog/assets/js/14.d78bfe9c.js"><link rel="prefetch" href="/blog/assets/js/3.198e4c55.js"><link rel="prefetch" href="/blog/assets/js/4.46a478a8.js"><link rel="prefetch" href="/blog/assets/js/5.822361f8.js"><link rel="prefetch" href="/blog/assets/js/6.3c9c8e22.js"><link rel="prefetch" href="/blog/assets/js/7.21cd4e7b.js"><link rel="prefetch" href="/blog/assets/js/8.c1ba0fe9.js"><link rel="prefetch" href="/blog/assets/js/9.91a99494.js">
     <link rel="stylesheet" href="/blog/assets/css/0.styles.48263c0b.css">
   </head>
   <body>
@@ -231,11 +231,13 @@ child <span class="token operator">=</span> <span class="token punctuation">{</s
  * Watchers hashes should not overwrite one
  * another, so we merge them as arrays.
  * 
- * 侦听器最终会合并成数组的形式
+ * 侦听器最终会合并结果有三种情况：
+ * 1. 只有parentVal
  * {
- *   key: [watcher1, watcher2] // parentVal和childVal存在相同的key
- *   key: watcher // 只有一个存在
+ *    __proto__: parentVal
  * }
+ * 2. 只有childVal，结果为childVal 
+ * 3. 都存在，则为一个对象，包含parentVal和childVal的所有属性，包括原型链上定义的watch
  */</span>
 strats<span class="token punctuation">.</span><span class="token function-variable function">watch</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>
   <span class="token parameter">parentVal<span class="token punctuation">:</span> <span class="token operator">?</span>Object<span class="token punctuation">,</span>
@@ -244,6 +246,8 @@ strats<span class="token punctuation">.</span><span class="token function-variab
   key<span class="token punctuation">:</span> string</span>
 <span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">?</span>Object <span class="token punctuation">{</span>
   <span class="token comment">// work around Firefox's Object.prototype.watch...</span>
+  <span class="token comment">// firefox下，不定义watch仍然可以在原型上找到watch</span>
+  <span class="token comment">// 因此一旦等于 nativeWatch就重置为undefined</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span>parentVal <span class="token operator">===</span> nativeWatch<span class="token punctuation">)</span> parentVal <span class="token operator">=</span> <span class="token keyword">undefined</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span>childVal <span class="token operator">===</span> nativeWatch<span class="token punctuation">)</span> childVal <span class="token operator">=</span> <span class="token keyword">undefined</span>
   <span class="token comment">/* istanbul ignore if */</span>
@@ -266,7 +270,7 @@ strats<span class="token punctuation">.</span><span class="token function-variab
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> ret
 <span class="token punctuation">}</span>
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br></div></div><p>watcher的合并过程为：</p> <pre><code>1. 如果childVal不存在，返回以parentVal为原型的对象或者一个空对象
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br></div></div><p>watcher的合并过程为：</p> <pre><code>1. 如果childVal不存在，返回以parentVal为原型的对象或者一个空对象
 2. 如果parentVal不存在，返回childVal
 3. 如果parentVal和childVal都存在：
   1. 定义ret变量保存最终结果
@@ -274,10 +278,42 @@ strats<span class="token punctuation">.</span><span class="token function-variab
   3. 遍历childVal，获取parent和child
   4. 如果存在parent，确保parent是数组
   5. parent存在，将child合并到parent中，否则，返回child数组。
-</code></pre> <p>举例如下：</p> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token keyword">const</span> Child <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+</code></pre> <p>合并结果有三种情况：</p> <ol><li>只有parentVal，结果为Object.create(parentVal || null)</li></ol> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token keyword">const</span> child <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  watch<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">a</span> <span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">new</span> <span class="token class-name">Child</span> <span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">//  合并结果为:</span>
+<span class="token punctuation">{</span>
+  __proto__<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">a</span> <span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><ol start="2"><li>只有childVal， 合并结果为childVal</li></ol> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code>Vue<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  watch<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">a</span> <span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">// 合并结果为：</span>
+Vue<span class="token punctuation">.</span>options<span class="token punctuation">.</span>watch <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function">a</span> <span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><ol start="3"><li>parentVal和childVal都存在</li></ol> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token keyword">const</span> Child <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   watch<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     <span class="token function">a</span> <span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">hello </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>v<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>，
+    <span class="token function">b</span> <span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
@@ -288,7 +324,7 @@ strats<span class="token punctuation">.</span><span class="token function-variab
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>执行Vue.extend时传给<code>strat.watch</code>的parentVal和childVal分别为：</p> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token comment">// parentVal 为Vue.options.watch.a</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p>执行Vue.extend时传给<code>strat.watch</code>的parentVal和childVal分别为：</p> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token comment">// parentVal 为Vue.options.watch.a</span>
 <span class="token keyword">undefined</span>
 <span class="token comment">// childVal</span>
 <span class="token keyword">function</span> <span class="token function">a</span> <span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -304,6 +340,9 @@ strats<span class="token punctuation">.</span><span class="token function-variab
 <span class="token punctuation">{</span>
   <span class="token function">a</span> <span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">hello </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>v<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">b</span> <span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <span class="token comment">// childVal</span>
@@ -312,17 +351,20 @@ strats<span class="token punctuation">.</span><span class="token function-variab
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newVal<span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>最终合并结果为:</p> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code>vm<span class="token punctuation">.</span>$options<span class="token punctuation">.</span>watch <span class="token operator">=</span> <span class="token punctuation">{</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>最终合并结果为:</p> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code>vm<span class="token punctuation">.</span>$options<span class="token punctuation">.</span>watch <span class="token operator">=</span> <span class="token punctuation">{</span>
   a<span class="token punctuation">:</span> <span class="token punctuation">[</span>
-    <span class="token function">a</span> <span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">hello </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>v<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token function">a</span> <span class="token punctuation">(</span><span class="token parameter">newVal</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">newVal</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newVal<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
-  <span class="token punctuation">]</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token function">b</span> <span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h2 id="props、inject、methods、computed合并策略"><a href="#props、inject、methods、computed合并策略" class="header-anchor">#</a> props、inject、methods、computed合并策略</h2> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token comment">/**
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h2 id="props、inject、methods、computed合并策略"><a href="#props、inject、methods、computed合并策略" class="header-anchor">#</a> props、inject、methods、computed合并策略</h2> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token comment">/**
  * Other object hashes.
  * props、methods、inject、computed的合并策略
  */</span>
@@ -545,9 +587,9 @@ Vue<span class="token punctuation">.</span><span class="token function">extend</
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/lmhcoding/blog/edit/master/docs/vue_v2/strats.md" target="_blank" rel="noopener noreferrer">在 GitHub 上编辑此页</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2/13/2020, 11:13:27 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/lmhcoding/blog/edit/master/docs/vue_v2/strats.md" target="_blank" rel="noopener noreferrer">在 GitHub 上编辑此页</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2/15/2020, 6:46:05 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
       ←
       <a href="/blog/vue_v2/mergeOptions.html" class="prev">选项合并（mergeOptions)</a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
-    <script src="/blog/assets/js/app.6dd13233.js" defer></script><script src="/blog/assets/js/2.c5bb9098.js" defer></script><script src="/blog/assets/js/13.cf15b51c.js" defer></script>
+    <script src="/blog/assets/js/app.e2a594f6.js" defer></script><script src="/blog/assets/js/2.c5bb9098.js" defer></script><script src="/blog/assets/js/13.495f7b28.js" defer></script>
   </body>
 </html>
