@@ -36,7 +36,8 @@ module.exports = {
                         'constructor',
                         'new_vue',
                         'mergeOptions',
-                        'strats'
+                        'strats',
+                        'component_merge'
                     ]
                 }
             ]
