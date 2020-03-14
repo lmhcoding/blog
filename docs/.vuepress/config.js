@@ -37,7 +37,8 @@ module.exports = {
                         'new_vue',
                         'mergeOptions',
                         'strats',
-                        'component_merge'
+                        'component_merge',
+                        'proxy'
                     ]
                 }
             ]
