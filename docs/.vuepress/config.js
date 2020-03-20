@@ -38,7 +38,8 @@ module.exports = {
                         'mergeOptions',
                         'strats',
                         'component_merge',
-                        'proxy'
+                        'proxy',
+                        'init'
                     ]
                 }
             ]
